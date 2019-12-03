@@ -1,0 +1,40 @@
+{
+  "name": "aws-cdk-es-with-api",
+  "version": "0.1.0",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "cdk": "cdk",
+    "synth": "eval $(assume-role $AWS_PROFILE) && LOCAL_DEV=true cdk synth api-stack --no-staging -c stage=dev -c sourceIp=`curl -s https://checkip.amazonaws.com` > template.yaml",
+    "deploy": "eval $(assume-role $AWS_PROFILE) && cdk deploy api-stack -c stage=dev -c sourceIp=`curl -s https://checkip.amazonaws.com`",
+    "destroy": "eval $(assume-role $AWS_PROFILE) && cdk destroy -c stage=dev"
+  },
+  "devDependencies": {
+    "@aws-cdk/aws-apigateway": "^1.18.0",
+    "@aws-cdk/aws-elasticsearch": "^1.18.0",
+    "@aws-cdk/aws-lambda": "^1.18.0",
+    "@aws-cdk/core": "^1.18.0",
+    "@types/aws-lambda": "^8.10.36",
+    "@types/aws-sdk": "^2.7.0",
+    "@types/elasticsearch": "^5.0.36",
+    "@types/fs-extra": "^8.0.1",
+    "@types/node": "^12.12.14",
+    "@typescript-eslint/eslint-plugin": "^2.9.0",
+    "@typescript-eslint/parser": "^2.9.0",
+    "aws-cdk": "^1.18.0",
+    "aws-sdk": "^2.580.0",
+    "eslint": "^6.7.1",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "fs-extra": "^8.1.0",
+    "prettier": "^1.19.1",
+    "source-map-support": "^0.5.16",
+    "ts-node": "^8.5.2",
+    "typescript": "~3.7.2"
+  },
+  "dependencies": {
+    "@acuris/aws-es-connection": "^1.0.1",
+    "@elastic/elasticsearch": "7.1.0"
+  }
+}
